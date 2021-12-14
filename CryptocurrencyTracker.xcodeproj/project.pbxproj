@@ -11,6 +11,7 @@
 		FA0A50F12768EC89004C3B1A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0A50F02768EC89004C3B1A /* ContentView.swift */; };
 		FA0A50F32768EC8D004C3B1A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA0A50F22768EC8D004C3B1A /* Assets.xcassets */; };
 		FA0A50F62768EC8D004C3B1A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA0A50F52768EC8D004C3B1A /* Preview Assets.xcassets */; };
+		FA0A50FF2768F2A3004C3B1A /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0A50FE2768F2A3004C3B1A /* Color.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +21,7 @@
 		FA0A50F22768EC8D004C3B1A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FA0A50F52768EC8D004C3B1A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		FA0A50F72768EC8D004C3B1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA0A50FE2768F2A3004C3B1A /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +54,7 @@
 		FA0A50ED2768EC89004C3B1A /* CryptocurrencyTracker */ = {
 			isa = PBXGroup;
 			children = (
+				FA0A50FD2768F28F004C3B1A /* Extentions */,
 				FA0A50EE2768EC89004C3B1A /* CryptocurrencyTrackerApp.swift */,
 				FA0A50F02768EC89004C3B1A /* ContentView.swift */,
 				FA0A50F22768EC8D004C3B1A /* Assets.xcassets */,
@@ -67,6 +70,14 @@
 				FA0A50F52768EC8D004C3B1A /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		FA0A50FD2768F28F004C3B1A /* Extentions */ = {
+			isa = PBXGroup;
+			children = (
+				FA0A50FE2768F2A3004C3B1A /* Color.swift */,
+			);
+			path = Extentions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,6 +151,7 @@
 			files = (
 				FA0A50F12768EC89004C3B1A /* ContentView.swift in Sources */,
 				FA0A50EF2768EC89004C3B1A /* CryptocurrencyTrackerApp.swift in Sources */,
+				FA0A50FF2768F2A3004C3B1A /* Color.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
