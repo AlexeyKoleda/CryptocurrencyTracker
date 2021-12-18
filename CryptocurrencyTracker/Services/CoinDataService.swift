@@ -11,7 +11,6 @@ import Combine
 class CoinDataService {
     
     @Published var allCoins: [Coin] = []
-//    var cancellables = Set<AnyCancellable>()
     
     var coinSubscription: AnyCancellable?
     
