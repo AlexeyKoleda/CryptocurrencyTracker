@@ -12,6 +12,7 @@ struct HomeView: View {
     @EnvironmentObject private var vm: HomeViewModel
     @State private var showPortfolio: Bool = false
     
+    
     var body: some View {
         ZStack {
             Color.theme.backgound.ignoresSafeArea()
@@ -19,8 +20,9 @@ struct HomeView: View {
             VStack {
                 homeHeader
                 
-                columnTitles
+                SearchBarView(searchText: $vm.searchText)
                 
+                columnTitles
                 if !showPortfolio {
                     allCoinsList
                         .transition(.move(edge: .leading))
