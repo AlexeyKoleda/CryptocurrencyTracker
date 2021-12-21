@@ -19,7 +19,7 @@ struct HomeView: View {
             
             VStack {
                 homeHeader
-                
+                MarketStatisticView(showPortfolio: $showPortfolio)
                 SearchBarView(searchText: $vm.searchText)
                 
                 columnTitles
