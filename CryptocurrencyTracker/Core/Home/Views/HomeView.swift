@@ -10,17 +10,22 @@ import SwiftUI
 struct HomeView: View {
     
     @EnvironmentObject private var vm: HomeViewModel
-    @State private var showPortfolio: Bool = false
-    
+    @State private var showPortfolio: Bool = false // Shows right screen with current portfolio
+    @State private var showEditPortfolioView: Bool = false // Shows new sheet with editing portfolio
     
     var body: some View {
         ZStack {
-            Color.theme.backgound.ignoresSafeArea()
-            
+            Color.theme.backgound
+                .ignoresSafeArea()
+                .sheet(isPresented: $showEditPortfolioView, content: {
+                    EditPortfolioView()
+                        .environmentObject(vm)
+                })
             VStack {
                 homeHeader
                 MarketStatisticView(showPortfolio: $showPortfolio)
                 SearchBarView(searchText: $vm.searchText)
+                    .padding()
                 
                 columnTitles
                 if !showPortfolio {
@@ -64,6 +69,11 @@ extension HomeView {
                 .background(
                     CircleButtonAnimationView(animate: $showPortfolio)
                 )
+                .onTapGesture {
+                    if showPortfolio {
+                        showEditPortfolioView.toggle()
+                    }
+                }
             Spacer()
             Text(showPortfolio ? "Portfolio" : "Live Prices")
                 .font(.headline)
