@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA0A44F827849BA8008D57A7 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0A44F727849BA8008D57A7 /* HapticManager.swift */; };
 		FA0A50EF2768EC89004C3B1A /* CryptocurrencyTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0A50EE2768EC89004C3B1A /* CryptocurrencyTrackerApp.swift */; };
 		FA0A50F32768EC8D004C3B1A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA0A50F22768EC8D004C3B1A /* Assets.xcassets */; };
 		FA0A50F62768EC8D004C3B1A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA0A50F52768EC8D004C3B1A /* Preview Assets.xcassets */; };
@@ -40,6 +41,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FA0A44F727849BA8008D57A7 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		FA0A50EB2768EC89004C3B1A /* CryptocurrencyTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptocurrencyTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA0A50EE2768EC89004C3B1A /* CryptocurrencyTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptocurrencyTrackerApp.swift; sourceTree = "<group>"; };
 		FA0A50F22768EC8D004C3B1A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 			children = (
 				FAFDAD7B276CE3CD001568E5 /* NetworkingManager.swift */,
 				FA589A972770D1C70019FC66 /* LocalFileManager.swift */,
+				FA0A44F727849BA8008D57A7 /* HapticManager.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -352,6 +355,7 @@
 				FA589AA62771F24F0019FC66 /* MarketData.swift in Sources */,
 				FA0A510B276A2493004C3B1A /* CircleButtonAnimationView.swift in Sources */,
 				FAFFEF9A276E1B5A002522DB /* CoinImageService.swift in Sources */,
+				FA0A44F827849BA8008D57A7 /* HapticManager.swift in Sources */,
 				FA589A9B27710F290019FC66 /* SearchBarView.swift in Sources */,
 				FA589AA42771E97F0019FC66 /* MarketStatisticView.swift in Sources */,
 				FA589A9F2771E0EA0019FC66 /* Statistic.swift in Sources */,
