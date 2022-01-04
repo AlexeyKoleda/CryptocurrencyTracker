@@ -38,6 +38,7 @@ class HomeViewModel: ObservableObject {
         
         // Updates markedData
         marketDataService.$marketData
+            .combineLatest($portfolioCoins)
             .map(mapGlobalMarketData)
             .sink { [weak self] returnedStats in
                 self?.statistics = returnedStats
@@ -47,12 +48,7 @@ class HomeViewModel: ObservableObject {
         // Updates portfolioCoins
         $allCoins
             .combineLatest(portfolioDataService.$savedEntities)
-            .map { coins, portfolios -> [Coin] in
-                coins.compactMap { coin -> Coin? in
-                        guard let portfolio = portfolios.first(where: { $0.coinID == coin.id }) else { return nil }
-                        return coin.updateHoldings(amount: portfolio.amount)
-                }
-            }
+            .map(mapAllCoinsToPortfolioCoins)
             .sink { [weak self] returnedCoins in
                 self?.portfolioCoins = returnedCoins
             }
@@ -77,7 +73,15 @@ class HomeViewModel: ObservableObject {
         }
     }
     
-    private func mapGlobalMarketData(data: MarketData?) -> [Statistic] {
+    private func mapAllCoinsToPortfolioCoins(allCoins: [Coin], portfolios: [Portfolio]) -> [Coin] {
+        allCoins
+            .compactMap { coin -> Coin? in
+                guard let portfolio = portfolios.first(where: { $0.coinID == coin.id }) else { return nil }
+                return coin.updateHoldings(amount: portfolio.amount)
+        }
+    }
+    
+    private func mapGlobalMarketData(data: MarketData?, portfolioCoins: [Coin]) -> [Statistic] {
         var stats: [Statistic] = []
         guard let data = data else {
             return stats
@@ -86,7 +90,24 @@ class HomeViewModel: ObservableObject {
         let marketCap = Statistic(title: "Market Cap", value: data.marketCap, percentageChange: data.marketCapChangePercentage24HUsd)
         let volume = Statistic(title: "24H Volume", value: data.volume)
         let btcDominance = Statistic(title: "BTC Dominance", value: data.btcDominance)
-        let portfolio = Statistic(title: "Portfolio Value", value: "$0.00", percentageChange: 0)
+        let portfolioValue =
+            portfolioCoins
+            .map({ $0.currentHoldingsValue })
+            .reduce(0, +)
+        
+        let previousValue =
+            portfolioCoins
+            .map { coin -> Double in
+                let currentValue = coin.currentHoldingsValue
+                let percentChange = coin.priceChangePercentage24H / 100
+                let previousValue = currentValue / (1 + percentChange)
+                return previousValue
+            }
+            .reduce(0, +)
+        
+        let percentageChange = ((portfolioValue - previousValue) / previousValue) * 100
+        
+        let portfolio = Statistic(title: "Portfolio Value", value: portfolioValue.asCurrencyWith2Decimals(), percentageChange: percentageChange)
         
         stats.append(contentsOf: [
             marketCap, volume, btcDominance, portfolio
