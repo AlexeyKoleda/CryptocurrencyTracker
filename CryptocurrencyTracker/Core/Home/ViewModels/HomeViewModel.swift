@@ -97,8 +97,8 @@ class HomeViewModel: ObservableObject {
     
     private func SortCoins(sort: SortOption, coins: inout [Coin]) {
         switch sort {
-        case .rank, .holdings: coins.sort(by: { $0.rank > $1.rank })
-        case .rankReversed, .holdingsReversed: coins.sort(by: { $0.rank < $1.rank })
+        case .rank, .holdings: coins.sort(by: { $0.rank < $1.rank })
+        case .rankReversed, .holdingsReversed: coins.sort(by: { $0.rank > $1.rank })
         case .price: coins.sort(by: { $0.currentPrice > $1.currentPrice })
         case .priceReversed: coins.sort(by: { $0.currentPrice < $1.currentPrice })
         }
