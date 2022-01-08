@@ -38,17 +38,15 @@ struct StatisticView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             StatisticView(stat: dev.stat1)
-                .padding()
                 .previewLayout(.sizeThatFits)
                 .preferredColorScheme(.light)
             StatisticView(stat: dev.stat2)
-                .padding()
                 .previewLayout(.sizeThatFits)
                 .preferredColorScheme(.dark)
             StatisticView(stat: dev.stat3)
-                .padding()
                 .previewLayout(.sizeThatFits)
                 .preferredColorScheme(.dark)
         }
+        .padding()
     }
 }
