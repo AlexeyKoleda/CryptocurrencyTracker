@@ -23,6 +23,7 @@ struct DetailLoadingView: View {
 struct DetailView: View {
     
     @StateObject private var vm: DetailViewModel
+    @State private var showFullSecription: Bool = false
     
     private let columns: [GridItem] = [
         GridItem(.flexible()),
@@ -30,7 +31,6 @@ struct DetailView: View {
     ]
     private let spacing: CGFloat = 30
     
-
     init(coin: Coin) {
         _vm = StateObject(wrappedValue: DetailViewModel(coin: coin))
     }
@@ -39,14 +39,14 @@ struct DetailView: View {
         ScrollView {
             VStack(spacing: 20) {
                 ChartView(coin: vm.coin)
-                
                 overviewTitle
                 Divider()
+                descriptionSection
                 overviewGrid
-                
                 additionalTitle
                 Divider()
                 additionalGrid
+                linksSection
             }
             .padding()
         }
@@ -102,6 +102,31 @@ extension DetailView {
             .frame(maxWidth: .infinity, alignment: .leading)
     }
     
+    private var descriptionSection: some View {
+        ZStack {
+            if let coinDescription = vm.coinDescription, !coinDescription.isEmpty {
+                VStack(alignment: .leading) {
+                    Text(coinDescription)
+                        .lineLimit(showFullSecription ? nil : 3)
+                        .font(.callout)
+                        .foregroundColor(Color.theme.secondaryText)
+                    Button(action: {
+                        withAnimation(.easeInOut) {
+                            showFullSecription.toggle()
+                        }
+                    }, label: {
+                        Text(showFullSecription ? "Hide" : "Read more...")
+                            .font(.caption)
+                            .fontWeight(.bold)
+                            .padding(.vertical, 4)
+                    })
+                    .accentColor(.blue)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+            }
+        }
+    }
+    
     private var overviewGrid: some View {
         LazyVGrid(
             columns: columns,
@@ -126,5 +151,21 @@ extension DetailView {
                     StatisticView(stat: stat)
                 }
         })
+    }
+    
+    private var linksSection: some View {
+        VStack(alignment: .leading, spacing: 20) {
+            if let websiteString = vm.websiteURL,
+               let url = URL(string: websiteString) {
+                Link("Website", destination: url)
+            }
+            if let redditString = vm.redditURL,
+               let url = URL(string: redditString) {
+                Link("Reddit", destination: url)
+            }
+        }
+        .accentColor(.blue)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .font(.headline)
     }
 }
