@@ -23,7 +23,7 @@ struct DetailLoadingView: View {
 struct DetailView: View {
     
     @StateObject private var vm: DetailViewModel
-    @State private var showFullSecription: Bool = false
+    @State private var showFullDecription: Bool = false
     
     private let columns: [GridItem] = [
         GridItem(.flexible()),
@@ -107,15 +107,15 @@ extension DetailView {
             if let coinDescription = vm.coinDescription, !coinDescription.isEmpty {
                 VStack(alignment: .leading) {
                     Text(coinDescription)
-                        .lineLimit(showFullSecription ? nil : 3)
+                        .lineLimit(showFullDecription ? nil : 3)
                         .font(.callout)
                         .foregroundColor(Color.theme.secondaryText)
                     Button(action: {
                         withAnimation(.easeInOut) {
-                            showFullSecription.toggle()
+                            showFullDecription.toggle()
                         }
                     }, label: {
-                        Text(showFullSecription ? "Hide" : "Read more...")
+                        Text(showFullDecription ? "Hide" : "Read more...")
                             .font(.caption)
                             .fontWeight(.bold)
                             .padding(.vertical, 4)

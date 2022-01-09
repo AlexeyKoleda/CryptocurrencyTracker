@@ -14,6 +14,7 @@ struct HomeView: View {
     @State private var showEditPortfolioView: Bool = false // Shows new sheet with editing portfolio
     @State private var selectedCoin: Coin? = nil
     @State private var showDetailView: Bool = false
+    @State private var showInfoView: Bool = false
     
     var body: some View {
         ZStack {
@@ -40,6 +41,9 @@ struct HomeView: View {
                 }
                 Spacer(minLength: 0)
             }
+            .sheet(isPresented: $showInfoView, content: {
+                InfoView()
+            })
         }
         .background(
             NavigationLink(
@@ -81,6 +85,8 @@ extension HomeView {
                 .onTapGesture {
                     if showPortfolio {
                         showEditPortfolioView.toggle()
+                    } else {
+                        showInfoView.toggle()
                     }
                 }
             Spacer()
