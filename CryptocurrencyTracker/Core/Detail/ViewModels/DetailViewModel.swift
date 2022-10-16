@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-class DetailViewModel: ObservableObject {
+final class DetailViewModel: ObservableObject {
     
     @Published var overviewStatistics: [Statistic] = []
     @Published var additionalStatistics: [Statistic] = []
